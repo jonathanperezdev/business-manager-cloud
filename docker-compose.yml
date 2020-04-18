@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  BMDISCOVERY:
+    build: business-manager-discovery/.
+    image: business-manager-discovery:1.0-SNAPSHOT
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+  BMCONFIGURATION:
+    build: business-manager-configuration/.
+    image: business-manager-configuration:1.0-SNAPSHOT
+    environment:
+      JAVA_OPTS: -DEUREKA_SERVER=http://BMDISCOVERY:8761/eureka
+    depends_on:
+      - BMDISCOVERY
+    ports:
+      - 8888:8888
+  BMGATEWAY:
+    build: business-manager-gateway/.
+    image: business-manager-gateway:1.0-SNAPSHOT
+    environment:
+      JAVA_OPTS: -DEUREKA_SERVER=http://BMDISCOVERY:8761/eureka
+    depends_on:
+      - BMDISCOVERY
+    ports:
+      - 5555:5555
+networks:
+  default:
+    external:
+      name: BM_NETWORK

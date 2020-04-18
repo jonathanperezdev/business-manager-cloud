@@ -1,0 +1,35 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+server:
+  port: 8888
+spring:
+  application:
+    name: BMCONFIGURATION
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jonathanperezdev/business-manager-configurations
+          searchPaths: BMEMPLEADO,BMGATEWAY
+          username: jonathanperezdev
+          password: Perrini148
+
+# Expose health and info endpoints to be consumed in web
+management:
+  endpoint:
+    health:
+      enabled: true
+    refresh:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,refresh
+
+info:
+  business-manager-config:
+    name: Business Manager Configuration
+    description: This is SpringCloudConfig server for business manager
+    version: 1.0
