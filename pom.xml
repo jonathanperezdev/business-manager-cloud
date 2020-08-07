@@ -9,11 +9,11 @@
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.business.manager</groupId>
+  <groupId>com.business.manager.cloud</groupId>
   <artifactId>business-manager-cloud</artifactId>
+  <name>business-manager-cloud</name>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>business-manager-cloud</name>
 
   <properties>
     <java.version>1.8</java.version>
